@@ -1,0 +1,832 @@
+/* Intel color palette */
+:root {
+  --intel-blue: #0071c5;
+  --intel-dark-blue: #003c71;
+  --intel-light-blue: #e6f2fa;
+  --intel-gray: #f5f7fa;
+  --intel-accent: #00b2a9;
+}
+
+/* RTL support */
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(90deg, var(--intel-blue) 60%, var(--intel-accent) 100%);
+  color: #fff;
+  padding: 4rem 0 3rem 0;
+  text-align: center;
+  border-radius: 0 0 2rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 24px 0 rgba(0, 113, 197, 0.12);
+}
+
+.hero-section h1 {
+  font-weight: 700;
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.hero-section p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #e6f2fa;
+}
+
+/* Timeline Section */
+.timeline-section {
+  padding: 2rem 0;
+}
+
+/* Default: vertical timeline (mobile-first) */
+.timeline {
+  position: relative;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--intel-blue);
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+}
+html[dir="rtl"] .timeline::before {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+.timeline-event {
+  position: relative;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px 0 rgba(0, 113, 197, 0.06);
+  padding: 0 0 0 0;
+  align-items: stretch;
+  overflow: hidden;
+  transition: box-shadow 0.2s, border 0.2s, transform 0.2s;
+  min-width: 0;
+  width: 90%;
+  margin: 0 auto;
+  z-index: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+  box-sizing: border-box;
+  border: none;
+}
+
+.timeline-event:hover,
+.timeline-event:focus-within {
+  box-shadow: 0 6px 24px 0 rgba(0, 113, 197, 0.15);
+}
+
+.timeline-event.active {
+  box-shadow: 0 8px 32px 0 rgba(0, 60, 113, 0.25), 0 2px 12px 0 rgba(0, 113, 197, 0.10);
+  border: 2px solid var(--intel-blue);
+  z-index: 2;
+  box-sizing: border-box;
+  /* Remove width, min-height, max-width, margin changes, and transform */
+}
+
+/* Highlight selected timeline card on large screens */
+@media (min-width: 992px) {
+  .timeline-event.active {
+    border: 2px solid var(--intel-blue) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 60, 113, 0.25), 0 2px 12px 0 rgba(0, 113, 197, 0.10) !important;
+    z-index: 2;
+    background: #fff;
+  }
+}
+
+/* On small screens, remove highlight for selected card */
+@media (max-width: 991.98px) {
+  .timeline-event.active {
+    border: none !important;
+    box-shadow: 0 2px 12px 0 rgba(0, 113, 197, 0.06) !important;
+    z-index: 1;
+  }
+}
+
+/* Timeline row: ensure columns stretch and cards fill height */
+.timeline-row > [class*="col-"] {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Timeline card as Bootstrap card */
+.timeline-event {
+  /* Remove custom card styles and use Bootstrap card */
+  background: #fff;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 320px;
+  max-height: 320px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  z-index: 1;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.timeline-event.card {
+  /* Ensure .card class is not overridden */
+  border-radius: 0;
+  border: none;
+  box-shadow: 0 2px 12px 0 rgba(0, 113, 197, 0.06);
+}
+
+.timeline-event img,
+.timeline-event .card-img-top {
+  width: 100%;
+  height: 160px;
+  min-height: 160px;
+  max-height: 160px;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 0 !important;
+  background: var(--intel-light-blue);
+  display: block;
+}
+
+.timeline-event .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* center content vertically */
+  flex: 1 1 auto;
+  padding: 0.75rem 1rem 0.5rem 1rem;
+  height: 100%;
+  min-height: 0;
+}
+
+.timeline-event h5,
+.timeline-event .card-title {
+  font-weight: 600;
+  color: var(--intel-dark-blue);
+  text-align: left;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+  line-height: 1.3;
+  min-height: 2.6em;
+  max-height: 2.6em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-event p,
+.timeline-event .card-text {
+  display: none;
+}
+
+/* Timeline card image covers top and sides, title below image, no whitespace above/sides */
+.timeline-event {
+  position: relative;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px 0 rgba(0, 113, 197, 0.06);
+  padding: 0 0 0rem 0;
+  align-items: stretch;
+  overflow: hidden;
+  transition: box-shadow 0.2s, border 0.2s, transform 0.2s;
+  min-width: 0;
+  width: 90%;
+  margin: 0 auto;
+  z-index: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100px;
+  box-sizing: border-box;
+  border: none;
+}
+
+.timeline-event img {
+  width: 100%;
+  height: 160px;
+  min-height: 160px;
+  max-height: 160px;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  border-radius: 0 !important;
+  background: var(--intel-light-blue);
+}
+
+/* Title below image, no margin above image */
+.timeline-event h5 {
+  font-weight: 600;
+  color: var(--intel-dark-blue);
+  text-align: left;
+  font-size: 1.1rem;
+  margin: 0rem 0.5rem 0.5rem 0.5rem;
+  padding: 0;
+  line-height: 1.3;
+  min-height: unset;
+}
+
+/* Hide card description by default (shown in separate box on large screens) */
+.timeline-event p {
+  display: none;
+}
+
+/* Remove the dot */
+.timeline-event::before {
+  display: none;
+}
+
+/* Remove timeline line and scroll styles */
+.timeline::before,
+.timeline-scroll,
+@media (min-width: 992px) {
+  .timeline,
+  .timeline::before,
+  .timeline-scroll {
+    /* No longer needed */
+    all: unset;
+    display: unset;
+    gap: unset;
+    padding: unset;
+    min-width: unset;
+    height: unset;
+    flex-direction: unset;
+    position: unset;
+    white-space: unset;
+    overflow: unset;
+    box-sizing: unset;
+    scroll-snap-type: unset;
+  }
+}
+
+/* Timeline row RTL reversal */
+html.translated-rtl .timeline-row {
+  flex-direction: row-reverse !important;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 576px) {
+  .hero-section {
+    padding: 2rem 0 1.5rem 0;
+    border-radius: 0 0 1rem 1rem;
+  }
+  .timeline-event {
+    padding: 1rem 1rem;
+  }
+}
+
+/* Show timeline-event p on small screens only */
+@media (max-width: 991.98px) {
+  .timeline-event p,
+  .timeline-event .card-text {
+    display: block;
+    margin-top: 0.5rem;
+    color: #444;
+    text-align: center;
+    font-size: 1rem;
+    opacity: 1;
+    max-height: none;
+    overflow: visible;
+    transition: none;
+  }
+}
+
+/* Remove hover/selected effect on small screens */
+@media (max-width: 991.98px) {
+  .timeline-event.active,
+  .timeline-event:hover,
+  .timeline-event:focus-within {
+    box-shadow: 0 2px 12px 0 rgba(0, 113, 197, 0.06);
+    border: 2px solid transparent;
+    z-index: 1;
+  }
+}
+
+/* Hide the description section below timeline on small screens */
+@media (max-width: 991.98px) {
+  #active-timeline-text {
+    display: none !important;
+  }
+}
+
+/* Fix vertical line height for mobile so it only covers the cards, accounting for container margin */
+@media (max-width: 991.98px) {
+  .timeline {
+    /* Remove padding so the line and cards align with the container edges */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .timeline-section .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .timeline::before {
+    top: 0;
+    bottom: 0;
+    height: 100%;
+  }
+  .timeline-event {
+    /* Remove margin so cards align with the line */
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* On small screens, make timeline cards stack vertically and scroll as a group, with less space between cards */
+@media (max-width: 991.98px) {
+  .timeline-row {
+    flex-direction: column !important;
+    overflow-x: unset !important;
+    overflow-y: auto !important;
+    height: auto;
+    max-height: none;
+    gap: 0.75rem !important; /* less space between cards */
+  }
+  .timeline-row > [class*="col-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-shrink: 0;
+    margin-bottom: 0 !important; /* remove extra margin */
+  }
+}
+
+/* Enable scroll snap for timeline cards on large screens */
+@media (min-width: 992px) {
+  .timeline-row {
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+  }
+  .timeline-row > [class*="col-"] {
+    scroll-snap-align: start;
+  }
+}
+
+/* RTL override for translated-rtl: right-align content using Bootstrap flex utilities */
+html.translated-rtl #active-timeline-text,
+html.translated-rtl .card-title,
+html.translated-rtl .card-text,
+html.translated-rtl .timeline-event,
+html.translated-rtl .timeline-event p,
+html.translated-rtl .timeline-event h5,
+html.translated-rtl .hero-section,
+html.translated-rtl .hero-section h1,
+html.translated-rtl .hero-section p {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* For Bootstrap row: push columns to the right in RTL mode */
+html.translated-rtl .row {
+  flex-direction: row-reverse !important;
+}
+
+/* For Bootstrap alert (description below timeline) */
+html.translated-rtl .alert,
+html.translated-rtl .alert-primary {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* Make card button align right in RTL mode */
+html.translated-rtl .card-body .btn {
+  display: inline-block;
+  float: right;
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* Remove border radius from all elements, including Bootstrap defaults */
+*,
+*:before,
+*:after {
+  border-radius: 0 !important;
+}
+
+/* Remove border from timeline-event */
+.timeline-event {
+  border: none;
+}
+
+.timeline-event img {
+  border-radius: 0 !important;
+}
+
+/* Remove border radius from Bootstrap cards, alerts, buttons, etc */
+.card,
+.card-img,
+.card-img-top,
+.card-body,
+.alert,
+.btn,
+.btn-outline-primary,
+img,
+input,
+textarea,
+.form-control,
+.navbar,
+.navbar-nav,
+.navbar-brand,
+.navbar-toggler,
+.dropdown-menu,
+.modal-content,
+.progress,
+.list-group-item,
+.badge,
+.pagination,
+.page-link {
+  border-radius: 0 !important;
+}
+
+/* Always left-align text in timeline cards */
+.timeline-event .card-body,
+.timeline-event h5,
+.timeline-event .card-title,
+.timeline-event p,
+.timeline-event .card-text {
+  text-align: left !important;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Remove RTL override for timeline-event text alignment */
+html.translated-rtl .timeline-event,
+html.translated-rtl .timeline-event p,
+html.translated-rtl .timeline-event h5,
+html.translated-rtl .card-title,
+html.translated-rtl .card-text {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* On small screens, fix RTL vertical stacking bug for timeline cards */
+@media (max-width: 991.98px) {
+  html.translated-rtl .timeline-row {
+    flex-direction: column !important;
+    direction: ltr !important; /* Prevent RTL from hiding all but first card */
+  }
+}
+
+/* Make 3-column section cards' buttons always stick to the bottom */
+.py-5 .card.h-100 {
+  display: flex;
+  flex-direction: column;
+}
+
+.py-5 .card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.py-5 .card-body .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* In RTL, align the button to the right in the 3-col cards */
+html.translated-rtl .py-5 .card-body .btn {
+  align-self: flex-end;
+}
+
+/* On small screens, let timeline cards grow to fit their content */
+@media (max-width: 991.98px) {
+  .timeline-event {
+    min-height: unset !important;
+    max-height: unset !important;
+    height: auto !important;
+  }
+  .timeline-event .card-body {
+    min-height: unset !important;
+    height: auto !important;
+  }
+  .timeline-event h5,
+  .timeline-event .card-title {
+    min-height: unset !important;
+    max-height: unset !important;
+    -webkit-line-clamp: unset !important;
+    display: block !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+  }
+}
+
+/* Newsletter section: full-width sticky footer style */
+.newsletter-section {
+  background: linear-gradient(90deg, var(--intel-blue) 70%, var(--intel-accent) 100%);
+  border-radius: 0;
+  box-shadow: 0 -2px 24px 0 rgba(0, 113, 197, 0.10);
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  color: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  z-index: 1050;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.newsletter-section.closed {
+  position: static !important;
+  width: 100%;
+  box-shadow: none;
+  margin-bottom: 0;
+  z-index: auto;
+}
+
+.newsletter-section.closed .newsletter-close-btn {
+  display: none !important;
+}
+
+/* Close (X) button styles */
+.newsletter-close-btn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+  z-index: 1100;
+  transition: opacity 0.15s;
+}
+.newsletter-close-btn:hover,
+.newsletter-close-btn:focus {
+  opacity: 1;
+  color: #fff;
+  outline: none;
+}
+
+.newsletter-section .card {
+  background: transparent !important;
+  border: none;
+  box-shadow: none;
+}
+
+.newsletter-section .card-body {
+  padding: 0;
+  color: #fff;
+  background: transparent !important;
+}
+
+.newsletter-section .card-title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.newsletter-section .newsletter-desc {
+  color: #e6f2fa;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.newsletter-section .form-label {
+  color: #fff;
+  font-weight: 500;
+}
+
+.newsletter-section .form-control {
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0 2px 8px 0 rgba(0, 113, 197, 0.08);
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  background: #f5f7fa;
+  color: #003c71;
+  height: 48px;
+}
+
+.newsletter-section .form-control:focus {
+  border: 2px solid var(--intel-accent);
+  box-shadow: 0 0 0 0.15rem rgba(0,178,169,0.15);
+  background: #fff;
+  color: #003c71;
+}
+
+/* Newsletter section .btn-primary: strong contrast, not blue */
+.newsletter-section .btn-primary {
+  background: #222; /* dark neutral for strong contrast */
+  border: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.65rem 2.2rem;
+  border-radius: 0.5rem;
+  transition: background 0.15s;
+  color: #fff;
+}
+
+.newsletter-section .btn-primary:hover,
+.newsletter-section .btn-primary:focus {
+  background: #444;
+  color: #fff;
+}
+
+/* Remove white background from input on autofill (Chrome/Webkit) */
+.newsletter-section input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #f5f7fa inset !important;
+  -webkit-text-fill-color: #003c71 !important;
+}
+
+/* Make the subscribe button exactly the same height as the email input */
+.newsletter-section .row.g-2.align-items-end > .col-md-4.d-grid .btn {
+  height: 48px;
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  /* Remove any vertical padding that could shrink the button */
+  line-height: 1.1;
+  box-sizing: border-box;
+}
+
+.newsletter-section .form-control {
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0 2px 8px 0 rgba(0, 113, 197, 0.08);
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  background: #f5f7fa;
+  color: #003c71;
+  height: 48px;
+}
+
+.newsletter-section .form-control:focus {
+  border: 2px solid var(--intel-accent);
+  box-shadow: 0 0 0 0.15rem rgba(0,178,169,0.15);
+  background: #fff;
+  color: #003c71;
+}
+
+.newsletter-section .btn-primary {
+  border: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.65rem 2.2rem;
+  border-radius: 0.5rem;
+  transition: background 0.15s;
+  color: #fff;
+}
+
+.newsletter-section .btn-primary:hover,
+.newsletter-section .btn-primary:focus {
+  background: #00948a;
+  color: #fff;
+}
+
+/* Remove white background from input on autofill (Chrome/Webkit) */
+.newsletter-section input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #f5f7fa inset !important;
+  -webkit-text-fill-color: #003c71 !important;
+}
+
+/* Make the subscribe button exactly match the email input height */
+.newsletter-section .row.g-2.align-items-end > .col-md-4.d-grid .btn {
+  height: 48px;
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Match the input's computed height */
+}
+
+@media (max-width: 576px) {
+  .newsletter-section {
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+    border-radius: 0;
+  }
+  .newsletter-section .card-title {
+    font-size: 1.3rem;
+  }
+  .newsletter-close-btn {
+    top: 0.7rem;
+    right: 0.7rem;
+    font-size: 1.5rem;
+  }
+}
+
+/* Prevent page content from being hidden behind the fixed newsletter */
+body.has-newsletter-footer {
+  padding-bottom: 220px; /* adjust if newsletter height changes */
+}
+
+/* Footer styles */
+.footer {
+  background: #fff;
+  border-top: 1px solid #e6f2fa;
+  color: #666;
+  font-size: 0.98rem;
+  z-index: 1;
+}
+.footer a {
+  color: #0071c5;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer a:hover,
+.footer a:focus {
+  color: #003c71;
+  text-decoration: underline;
+}
+
+/* RTL fixes for newsletter section and footer */
+html.translated-rtl .newsletter-section,
+html.translated-rtl .newsletter-section .newsletter-desc,
+html.translated-rtl .newsletter-section .form-label,
+html.translated-rtl .newsletter-section .form-control,
+html.translated-rtl .newsletter-section .btn-primary,
+html.translated-rtl .newsletter-section .card-title,
+html.translated-rtl .newsletter-section .card-body {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+html.translated-rtl .newsletter-section .form-control {
+  text-align: right !important;
+}
+
+/* Place the subscribe button on the left in RTL (input on right, button on left) */
+html.translated-rtl .newsletter-section .row.g-2.align-items-end {
+  flex-direction: row-reverse !important;
+}
+html.translated-rtl .newsletter-section .col-md-8 {
+  order: 2;
+}
+html.translated-rtl .newsletter-section .col-md-4.d-grid {
+  order: 1;
+}
+
+/* Footer RTL */
+html.translated-rtl .footer,
+html.translated-rtl .footer nav,
+html.translated-rtl .footer .text-muted {
+  text-align: right !important;
+  direction: rtl !important;
+  justify-content: flex-end !important;
+}
+
+html.translated-rtl .footer nav {
+  flex-direction: row-reverse !important;
+}
+
+html.translated-rtl .footer .me-3 {
+  margin-left: 1rem !important;
+  margin-right: 0 !important;
+}
+
+/* Hero Section RTL adjustments */
+.hero-section,
+html.translated-rtl .hero-section {
+  text-align: center !important;
+  direction: ltr !important;
+}
+
+html.translated-rtl .hero-section h1,
+html.translated-rtl .hero-section p {
+  text-align: center !important;
+  direction: ltr !important;
+}
